@@ -639,6 +639,10 @@ export class BigSliderCard extends LitElement {
       #percentage {
         color: var(--bsc-secondary-text-color);
       }
+
+      #name, #percentage {
+        transition: color 0.3s;
+      }
     `;
   }
 }

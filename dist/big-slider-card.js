@@ -179,6 +179,10 @@ var pt,_t;ut[dt]=!0,ut.elementProperties=new Map,ut.elementStyles=[],ut.shadowRo
       #percentage {
         color: var(--bsc-secondary-text-color);
       }
+
+      #name, #percentage {
+        transition: color 0.3s;
+      }
     `}}var ft,yt;t([c()],mt.prototype,"_config",void 0),t([c()],mt.prototype,"_entity",void 0),t([c()],mt.prototype,"_state",void 0),t([c()],mt.prototype,"_status",void 0),t([c()],mt.prototype,"_name",void 0),function(t){t.language="language",t.system="system",t.comma_decimal="comma_decimal",t.decimal_comma="decimal_comma",t.space_comma="space_comma",t.none="none"}(ft||(ft={})),function(t){t.language="language",t.system="system",t.am_pm="12",t.twenty_four="24"}(yt||(yt={}));const bt=[{name:"entity",selector:{entity:{domain:"light"}}},{name:"name",selector:{text:{}}},{name:"icon",selector:{icon:{}},context:{icon_entity:"entity"}},{name:"colorize",selector:{boolean:{}}},{name:"show_percentage",selector:{boolean:{}}},{name:"bold_text",selector:{boolean:{}}},{name:"tap_action",selector:{"ui-action":{}}},{name:"hold_action",selector:{"ui-action":{}}}];var $t;console.info(`%c  BIG-SLIDER-CARD \n%c  ${l("common.version")} 1.1.5    `,"color: orange; font-weight: bold; background: black","color: white; font-weight: bold; background: dimgray"),customElements.define("big-slider-card",mt),customElements.define("big-slider-card-editor",class extends vt{setConfig(t){this._config=t}render(){return H`
       <ha-form
         .hass=${this.hass}
