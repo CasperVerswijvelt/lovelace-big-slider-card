@@ -242,7 +242,6 @@ export class BigSliderCard extends LitElement {
   _updateColors(): void {
     let color = 'var(--bsc-color)';
     let brightness = '0%';
-    let brightnessUI = '50%';
     let isOn = false;
 
     if (this._state) {
@@ -255,7 +254,6 @@ export class BigSliderCard extends LitElement {
         }
         if (stateBrightness) {
           brightness = `${Math.ceil(100 * stateBrightness / 255)}%`
-          brightnessUI = `${Math.ceil(100 * stateBrightness / 510 + 50)}%`
         }
       } else {
         color = 'var(--bsc-off-color)';
@@ -268,7 +266,6 @@ export class BigSliderCard extends LitElement {
     }
     this.style.setProperty('--bsc-entity-color', color);
     this.style.setProperty('--bsc-brightness', brightness);
-    this.style.setProperty('--bsc-brightness-ui', brightnessUI);
 
     // Dynamic background color
     if (isOn) {
@@ -527,7 +524,6 @@ export class BigSliderCard extends LitElement {
         --bsc-slider-color: var(--paper-slider-active-color, #f9d2b0);
         --bsc-percent: 0%;
         --bsc-brightness: 50%;
-        --bsc-brightness-ui: 50%;
         --bsc-color: var(--paper-item-icon-color);
         --bsc-off-color: var(--paper-item-icon-color);
         --bsc-entity-color: var(--bsc-color);
@@ -590,7 +586,6 @@ export class BigSliderCard extends LitElement {
 
       #slider.colorize {
         background-color: var(--bsc-entity-color);
-        filter: brightness(var(--bsc-brightness-ui));
         transition: background-color 1s ease, filter 1s ease;
       }
 
@@ -607,7 +602,6 @@ export class BigSliderCard extends LitElement {
         justify-content: center;
         align-items: center;
         color: var(--bsc-icon-color, var(--bsc-entity-color));
-        filter: brightness(var(--bsc-brightness-ui));
         transition: color 0.3s ease-out;
       }
 
