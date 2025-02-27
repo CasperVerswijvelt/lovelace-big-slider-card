@@ -20,8 +20,14 @@ export interface BigSliderCardConfig extends LovelaceCardConfig {
   height?: number;
   color?: string;
   background_color?: string;
+  background_color_on?: string;
+  text_font_weight?: string;
   text_color?: string;
+  text_color_on?: string;
+  secondary_text_color?: string;
+  secondary_text_color_on?: string;
   icon_color?: string;
+  icon_color_off?: string;
   border_color?: string;
   border_radius?: string;
   border_style?: string;

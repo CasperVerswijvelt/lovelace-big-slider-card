@@ -269,11 +269,65 @@ export class BigSliderCard extends LitElement {
     this.style.setProperty('--bsc-entity-color', color);
     this.style.setProperty('--bsc-brightness', brightness);
     this.style.setProperty('--bsc-brightness-ui', brightnessUI);
-    if(this._config.icon_color && isOn) {
-      this.style.setProperty('--bsc-icon-color', this._config.icon_color);
+
+    // Dynamic background color
+    if (isOn) {
+      if (this._config.background_color_on) {
+        this._setStyleProperty('--bsc-background', this._config.background_color_on);
+      } else {
+        this.style.removeProperty('--bsc-background');
+      }
+    } else {
+      if (this._config.background_color) {
+        this._setStyleProperty('--bsc-background', this._config.background_color);
+      } else {
+        this.style.removeProperty('--bsc-background');
+      }
     }
-    if(this._config.icon_color && !isOn) {
-      this.style.removeProperty('--bsc-icon-color');
+
+    // Dynamic icon color
+    if (isOn) {
+      if (this._config.icon_color) {
+        this.style.setProperty('--bsc-icon-color', this._config.icon_color);
+      } else {
+        this.style.removeProperty('--bsc-icon-color');
+      }
+    } else {
+      if (this._config.icon_color_off) {
+        this.style.setProperty('--bsc-icon-color', this._config.icon_color_off);
+      } else {
+        this.style.removeProperty('--bsc-icon-color');
+      }
+    }
+
+    // Dynamic text color
+    if (isOn) {
+      if (this._config.text_color_on) {
+        this._setStyleProperty('--bsc-primary-text-color', this._config.text_color_on);
+      } else {
+        this.style.removeProperty('--bsc-primary-text-color');
+      }
+    } else {
+      if (this._config.text_color) {
+        this._setStyleProperty('--bsc-primary-text-color', this._config.text_color);
+      } else {
+        this.style.removeProperty('--bsc-primary-text-color');
+      }
+    }
+
+    // Dynamic secondary text color
+    if (isOn) {
+      if (this._config.secondary_text_color_on) {
+        this._setStyleProperty('--bsc-secondary-text-color', this._config.secondary_text_color_on);
+      } else {
+        this.style.removeProperty('--bsc-secondary-text-color');
+      }
+    } else {
+      if (this._config.secondary_text_color) {
+        this._setStyleProperty('--bsc-secondary-text-color', this._config.secondary_text_color);
+      } else {
+        this.style.removeProperty('--bsc-secondary-text-color');
+      }
     }
   }
 
@@ -405,8 +459,6 @@ export class BigSliderCard extends LitElement {
 
     const boldText = (this._config.bold_text && true) ?? false;
 
-    this._setStyleProperty('--bsc-background', this._config.background_color);
-    this._setStyleProperty('--bsc-primary-text-color', this._config.text_color);
     this._setStyleProperty('--bsc-slider-color', this._config.color);
     this._setStyleProperty('--bsc-border-color', this._config.border_color);
     this._setStyleProperty('--bsc-border-radius',  this._config.border_radius);
@@ -415,6 +467,7 @@ export class BigSliderCard extends LitElement {
     this._setStyleProperty('--bsc-height', this._config.height, (height) => `${height}px`);
     this._setStyleProperty('--bsc-slider-opacity', this._config.slider_opacity);
     this._setStyleProperty('--bsc-icon-padding', this._config.icon_padding, (padding) => `${padding}px`);
+    this._setStyleProperty('--bsc-text-font-weight', this._config.text_font_weight);
 
     return html`
       <ha-card
@@ -488,6 +541,7 @@ export class BigSliderCard extends LitElement {
         --bsc-opacity: 1;
         --bsc-slider-opacity: 0.3;
         --bsc-icon-padding: 24px;
+        --bsc-text-font-weight: 400;
 
         display: flex;
         transition: transform 0.1s ease-out;
@@ -578,11 +632,12 @@ export class BigSliderCard extends LitElement {
       }
 
       #name {
-        color: var(--bsc-primary-text-color)
+        color: var(--bsc-primary-text-color);
+        font-weight: var(--bsc-text-font-weight);
       }
 
       #percentage {
-        color: var(--bsc-secondary-text-color)
+        color: var(--bsc-secondary-text-color);
       }
     `;
   }
