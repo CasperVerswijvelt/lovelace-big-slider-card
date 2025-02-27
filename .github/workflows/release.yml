@@ -12,9 +12,9 @@ jobs:
             - uses: actions/checkout@master
             - uses: actions/setup-node@v1
               with:
-                  node-version: '10.x'
-            - run: yarn install
-            - run: yarn build
+                  node-version: '20.x'
+            - run: npm install
+            - run: npm run build
             - id: create_release
               uses: actions/create-release@v1
               env:
