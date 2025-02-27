@@ -173,6 +173,7 @@ export class BigSliderCard extends LitElement {
     this.currentValue = this.oldValue + percentage;
     this._checklimits();
     this._updateSlider();
+    this._updateColors();
   }
 
   private _handleAction(action: any): void {
@@ -260,15 +261,18 @@ export class BigSliderCard extends LitElement {
       }
     }
 
-    const percentage = this?.shadowRoot?.getElementById('percentage');
-    if (!isOn) {
-      percentage && (percentage.innerText = localize('common.off'));
-    }
     this.style.setProperty('--bsc-entity-color', color);
     this.style.setProperty('--bsc-brightness', brightness);
 
+    const isVisuallyOn = isOn || this.currentValue > 0;
+
+    if (!isVisuallyOn) {
+      const percentage = this?.shadowRoot?.getElementById('percentage');
+      percentage && (percentage.innerText = localize('common.off'));
+    }
+
     // Dynamic background color
-    if (isOn) {
+    if (isVisuallyOn) {
       if (this._config.background_color_on) {
         this._setStyleProperty('--bsc-background', this._config.background_color_on);
       } else {
@@ -283,7 +287,7 @@ export class BigSliderCard extends LitElement {
     }
 
     // Dynamic icon color
-    if (isOn) {
+    if (isVisuallyOn) {
       if (this._config.icon_color) {
         this.style.setProperty('--bsc-icon-color', this._config.icon_color);
       } else {
@@ -298,7 +302,7 @@ export class BigSliderCard extends LitElement {
     }
 
     // Dynamic text color
-    if (isOn) {
+    if (isVisuallyOn) {
       if (this._config.text_color_on) {
         this._setStyleProperty('--bsc-primary-text-color', this._config.text_color_on);
       } else {
@@ -313,7 +317,7 @@ export class BigSliderCard extends LitElement {
     }
 
     // Dynamic secondary text color
-    if (isOn) {
+    if (isVisuallyOn) {
       if (this._config.secondary_text_color_on) {
         this._setStyleProperty('--bsc-secondary-text-color', this._config.secondary_text_color_on);
       } else {
